@@ -13,6 +13,7 @@
 		0A6128A426B3D43400098972 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6128A326B3D43400098972 /* Preview Assets.xcassets */; };
 		0A6128AE26B3D43400098972 /* WatchingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128AD26B3D43400098972 /* WatchingTests.swift */; };
 		0A6128B826B3D43500098972 /* WatchingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128B726B3D43500098972 /* WatchingUITests.swift */; };
+		0A6128C526B3D4E900098972 /* PersistanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128C426B3D4E900098972 /* PersistanceData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		0A6128AD26B3D43400098972 /* WatchingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingTests.swift; sourceTree = "<group>"; };
 		0A6128B326B3D43400098972 /* WatchingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6128B726B3D43500098972 /* WatchingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchingUITests.swift; sourceTree = "<group>"; };
+		0A6128C426B3D4E900098972 /* PersistanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			children = (
 				0A61289C26B3D43300098972 /* WatchingApp.swift */,
 				0A61289E26B3D43300098972 /* ContentView.swift */,
+				0A6128C426B3D4E900098972 /* PersistanceData.swift */,
 				0A6128A026B3D43400098972 /* Assets.xcassets */,
 				0A6128A226B3D43400098972 /* Preview Content */,
 			);
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6128C526B3D4E900098972 /* PersistanceData.swift in Sources */,
 				0A61289F26B3D43300098972 /* ContentView.swift in Sources */,
 				0A61289D26B3D43300098972 /* WatchingApp.swift in Sources */,
 			);
