@@ -180,82 +180,86 @@ struct ContentView: View {
                                 } .padding(.horizontal)
                             }
                             ForEach(activeMovies.indices, id: \.self, content: { index in
-                                HStack {
-                                    Image(systemName: activeMovies[index].icon)
-                                        .foregroundColor(.pink)
-                                        .font(.system(size: 20, weight: .medium))
-                                    Text(activeMovies[index].name)
-                                        .font(.system(size: 20, weight: .medium, design: .rounded))
-                                    Spacer()
-                                    NavigationLink(destination: {
+                                NavigationLink(destination: {
     //                                        var name: String
     //                                        var icon: String
     //                                        var releaseDate: Date
     //                                        var active: Bool
     //                                        var info: String
     //                                        var platform: String
+                                    Text(activeMovies[index].name)
+                                        .font(.title)
+                                    Button {
+                                        activeMovies.remove(at: index)
+                                        let output = upcomingMovies + activeMovies + inactiveMovies
+                                        Movie.saveToFile(output)
+                                        showPage = false
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                            .frame(width: 300, height: 50, alignment: .center)
+                                            .background(.red)
+                                            .cornerRadius(15)
+                                            .padding()
+                                    }
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: activeMovies[index].icon)
+                                            .foregroundColor(.pink)
+                                            .font(.system(size: 20, weight: .medium))
                                         Text(activeMovies[index].name)
-                                            .font(.title)
-                                        Button {
-                                            activeMovies.remove(at: index)
-                                            let output = upcomingMovies + activeMovies + inactiveMovies
-                                            Movie.saveToFile(output)
-                                            showPage = false
-                                        } label: {
-                                            Text("Delete")
-                                                .foregroundColor(.white)
-                                                .frame(width: 300, height: 50, alignment: .center)
-                                                .background(.red)
-                                                .cornerRadius(15)
-                                                .padding()
-                                        }
-                                    }, label: {
+                                            .font(.system(size: 20, weight: .medium, design: .rounded))
+                                            .foregroundColor(.primary)
+                                        Spacer()
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.gray)
-                                    })
-                                } .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(15)
-                                .padding(.horizontal)
+                                    }
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(15)
+                                    .padding(.horizontal)
+                                })
                             })
                             ForEach(activeShows.indices, id: \.self, content: { index in
-                                HStack {
-                                    Image(systemName: activeShows[index].icon)
-                                        .foregroundColor(.pink)
-                                        .font(.system(size: 20, weight: .medium))
+                                NavigationLink(destination: {
+    //                                        var name: String
+    //                                        var icon: String
+    //                                        var releaseDate: Date
+    //                                        var active: Bool
+    //                                        var info: String
+    //                                        var platform: String
                                     Text(activeShows[index].name)
-                                        .font(.system(size: 20, weight: .medium, design: .rounded))
-                                    Spacer()
-                                    NavigationLink(destination: {
-        //                                        var name: String
-        //                                        var icon: String
-        //                                        var releaseDate: Date
-        //                                        var active: Bool
-        //                                        var info: String
-        //                                        var platform: String
+                                        .font(.title)
+                                    Button {
+                                        activeShows.remove(at: index)
+                                        let output = upcomingShows + activeShows + inactiveShows
+                                        Show.saveToFile(output)
+                                        showPage = false
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                            .frame(width: 300, height: 50, alignment: .center)
+                                            .background(.red)
+                                            .cornerRadius(15)
+                                            .padding()
+                                    }
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: activeShows[index].icon)
+                                            .foregroundColor(.pink)
+                                            .font(.system(size: 20, weight: .medium))
                                         Text(activeShows[index].name)
-                                            .font(.title)
-                                        Button {
-                                            activeShows.remove(at: index)
-                                            let output = upcomingShows + activeShows + inactiveShows
-                                            Show.saveToFile(output)
-                                            showPage = false
-                                        } label: {
-                                            Text("Delete")
-                                                .foregroundColor(.white)
-                                                .frame(width: 300, height: 50, alignment: .center)
-                                                .background(.red)
-                                                .cornerRadius(15)
-                                                .padding()
-                                        }
-                                    }, label: {
+                                            .font(.system(size: 20, weight: .medium, design: .rounded))
+                                            .foregroundColor(.primary)
+                                        Spacer()
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.gray)
-                                    })
-                                } .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(15)
-                                .padding(.horizontal)
+                                    }
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(15)
+                                    .padding(.horizontal)
+                                })
                             })
                             if inactiveMovies.count != 0 || inactiveShows.count != 0 {
                                 HStack {
@@ -266,82 +270,86 @@ struct ContentView: View {
                                 } .padding(.horizontal)
                             }
                             ForEach(inactiveMovies.indices, id: \.self, content: { index in
-                                HStack {
-                                    Image(systemName: inactiveMovies[index].icon)
-                                        .foregroundColor(.pink)
-                                        .font(.system(size: 20, weight: .medium))
-                                    Text(inactiveMovies[index].name)
-                                        .font(.system(size: 20, weight: .medium, design: .rounded))
-                                    Spacer()
-                                    NavigationLink(destination: {
+                                NavigationLink(destination: {
     //                                        var name: String
     //                                        var icon: String
     //                                        var releaseDate: Date
     //                                        var active: Bool
     //                                        var info: String
     //                                        var platform: String
+                                    Text(inactiveMovies[index].name)
+                                        .font(.title)
+                                    Button {
+                                        inactiveMovies.remove(at: index)
+                                        let output = upcomingMovies + activeMovies + inactiveMovies
+                                        Movie.saveToFile(output)
+                                        showPage = false
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                            .frame(width: 300, height: 50, alignment: .center)
+                                            .background(.red)
+                                            .cornerRadius(15)
+                                            .padding()
+                                    }
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: inactiveMovies[index].icon)
+                                            .foregroundColor(.pink)
+                                            .font(.system(size: 20, weight: .medium))
                                         Text(inactiveMovies[index].name)
-                                            .font(.title)
-                                        Button {
-                                            inactiveMovies.remove(at: index)
-                                            let output = upcomingMovies + activeMovies + inactiveMovies
-                                            Movie.saveToFile(output)
-                                            showPage = false
-                                        } label: {
-                                            Text("Delete")
-                                                .foregroundColor(.white)
-                                                .frame(width: 300, height: 50, alignment: .center)
-                                                .background(.red)
-                                                .cornerRadius(15)
-                                                .padding()
-                                        }
-                                    }, label: {
+                                            .font(.system(size: 20, weight: .medium, design: .rounded))
+                                            .foregroundColor(.primary)
+                                        Spacer()
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.gray)
-                                    })
-                                } .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(15)
-                                .padding(.horizontal)
+                                    }
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(15)
+                                    .padding(.horizontal)
+                                })
                             })
                             ForEach(inactiveShows.indices, id: \.self, content: { index in
-                                HStack {
-                                    Image(systemName: inactiveShows[index].icon)
-                                        .foregroundColor(.pink)
-                                        .font(.system(size: 20, weight: .medium))
+                                NavigationLink(destination: {
+    //                                        var name: String
+    //                                        var icon: String
+    //                                        var releaseDate: Date
+    //                                        var active: Bool
+    //                                        var info: String
+    //                                        var platform: String
                                     Text(inactiveShows[index].name)
-                                        .font(.system(size: 20, weight: .medium, design: .rounded))
-                                    Spacer()
-                                    NavigationLink(destination: {
-        //                                        var name: String
-        //                                        var icon: String
-        //                                        var releaseDate: Date
-        //                                        var active: Bool
-        //                                        var info: String
-        //                                        var platform: String
+                                        .font(.title)
+                                    Button {
+                                        inactiveShows.remove(at: index)
+                                        let output = upcomingShows + activeShows + inactiveShows
+                                        Show.saveToFile(output)
+                                        showPage = false
+                                    } label: {
+                                        Text("Delete")
+                                            .foregroundColor(.white)
+                                            .frame(width: 300, height: 50, alignment: .center)
+                                            .background(.red)
+                                            .cornerRadius(15)
+                                            .padding()
+                                    }
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: inactiveShows[index].icon)
+                                            .foregroundColor(.pink)
+                                            .font(.system(size: 20, weight: .medium))
                                         Text(inactiveShows[index].name)
-                                            .font(.title)
-                                        Button {
-                                            inactiveShows.remove(at: index)
-                                            let output = upcomingShows + activeShows + inactiveShows
-                                            Show.saveToFile(output)
-                                            showPage = false
-                                        } label: {
-                                            Text("Delete")
-                                                .foregroundColor(.white)
-                                                .frame(width: 300, height: 50, alignment: .center)
-                                                .background(.red)
-                                                .cornerRadius(15)
-                                                .padding()
-                                        }
-                                    }, label: {
+                                            .font(.system(size: 20, weight: .medium, design: .rounded))
+                                            .foregroundColor(.primary)
+                                        Spacer()
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.gray)
-                                    })
-                                } .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(15)
-                                .padding(.horizontal)
+                                    }
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(15)
+                                    .padding(.horizontal)
+                                })
                             })
                         }
                     }
@@ -361,6 +369,8 @@ struct ContentView: View {
                     loadItems()},content: {
                     NewSheet(showSheet: $showNewSheet, movies: $movies, shows: $shows)
                         .interactiveDismissDisabled(true)
+                        .accentColor(.pink)
+                        .toggleStyle(SwitchToggleStyle(tint: Color.pink))
                 })
             }
             .accentColor(.pink)
@@ -417,7 +427,6 @@ extension Calendar {
 
 func dayDifference(date1: Date, date2: Date) -> Int {
     let diffs = Calendar.current.dateComponents([.day], from: date1, to: date2)
-    print(diffs)
     return diffs.day! + 1
 }
 
