@@ -1,0 +1,173 @@
+//
+//  NewSheet.swift
+//  NewSheet
+//
+//  Created by Luke Drushell on 7/30/21.
+//
+
+import SwiftUI
+
+struct NewSheet: View {
+    
+    @Binding var showSheet: Bool
+    @Binding var movies: [Movie]
+    @Binding var shows: [Show]
+    
+    @State private var selectedDate: Date = Date()
+    @State private var showDate: Bool = false
+    
+    @State private var title = ""
+    @State private var notes = ""
+    
+    @State var typePicker = "Movie"
+    @State var viewingTypes = ["Movie", "Show"]
+    
+    @State var iconTheme = "Default"
+    @State var themeTypes = ["Default", "Action", "Medieval", "Sci-Fi", "Drama", "Comedy", "Romance", "Documenatry", "Game Show"]
+    @State var icon = "tv"
+    
+    @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
+    @State var platformTypesShow = ["Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
+    @State var platform = "Theater"
+    
+    @State var active = false
+    @State var reoccuring = false
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Form {
+                    Section {
+                        Picker("Picker", selection: $typePicker, content: {
+                            ForEach(viewingTypes, id:\.self, content: {
+                                Text($0)
+                            })
+                        }) .pickerStyle(.segmented)
+                        .listRowBackground(Color(.systemGroupedBackground))
+                        .padding(.top)
+                    }
+                    
+                    Section {
+                        TextField("Title", text: $title)
+                        
+                        TextField("Notes", text: $notes)
+                    }
+                    
+                    Section {
+                        Picker("Theme", selection: $iconTheme, content: {
+                            ForEach(themeTypes, id: \.self, content: {
+                                Text($0)
+                            })
+                        })
+                        Picker("Platform", selection: $platform, content: {
+                            ForEach(typePicker == "Movie" ? platformTypes : platformTypesShow, id: \.self, content: {
+                                Text($0)
+                            })
+                        })
+                    }
+                    
+                    Section {
+                        if active != true {
+                            Toggle("Upcoming", isOn: $showDate)
+                            if showDate {
+                                DatePicker("Release Date", selection: $selectedDate, in: Date()...,displayedComponents: .date)
+                                    .datePickerStyle(.automatic)
+                                    .animation(.default, value: 1)
+                            }
+                        }
+                    }
+                    
+                    Section {
+                        Toggle("Currently Watching", isOn: $active)
+                        if typePicker == "Show" {
+                            Toggle("Reoccuring", isOn: $reoccuring)
+                        }
+                    }
+   
+                }
+                
+                Button {
+                    if typePicker == "Movie" {
+                        if title != "" {
+                            switch iconTheme {
+                                case "Action":
+                                    icon = "hourglass"
+                                case "Medieval":
+                                    icon = "checkerboard.shield"
+                                case "Sci-Fi":
+                                    icon = "waveform"
+                                case "Drama":
+                                    icon = "theatermasks.fill"
+                                case "Comedy":
+                                    icon = "quote.bubble.fill"
+                                case "Romance":
+                                    icon = "heart.fill"
+                                case "Documentary":
+                                    icon = "camera.fill"
+                                case "Game Show":
+                                    icon = "dice.fill"
+                                default:
+                                    icon = "tv"
+                            }
+                            if active {
+                                selectedDate = Date()
+                            }
+                            movies.insert(Movie(name: title, icon: icon, releaseDate: selectedDate, active: active, info: notes, platform: platform), at: 0)
+                            Movie.saveToFile(movies)
+                        }
+                    } else {
+                        if title != "" {
+                            switch iconTheme {
+                                case "Action":
+                                    icon = "hourglass"
+                                case "Medieval":
+                                    icon = "checkerboard.shield"
+                                case "Sci-Fi":
+                                    icon = "waveform"
+                                case "Drama":
+                                    icon = "theatermasks.fill"
+                                case "Comedy":
+                                    icon = "quote.bubble.fill"
+                                case "Romance":
+                                    icon = "heart.fill"
+                                case "Documentary":
+                                    icon = "camera.fill"
+                                case "Game Show":
+                                    icon = "dice.fill"
+                                default:
+                                    icon = "tv"
+                            }
+                            if active {
+                                selectedDate = Date()
+                            }
+                            shows.insert(Show(name: title, icon: icon, releaseDate: selectedDate, active: active, info: notes, platform: platform, reoccuring: reoccuring), at: 0)
+                            Show.saveToFile(shows)
+                        }
+                    }
+                    showSheet.toggle()
+                } label: {
+                    Text(title == "" ? "Dismiss" : "Save")
+                        .foregroundColor(.white)
+                        .bold()
+                        .frame(width: 300, height: 50, alignment: .center)
+                        .background(Color.blue)
+                        .cornerRadius(15)
+                        .padding()
+                        .padding(.bottom, 30)
+                }
+                
+                
+            }
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarTitle("Add Item", displayMode: .automatic)
+            .background(Color(.systemGroupedBackground))
+        }
+    }
+}
+
+struct NewSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        NewSheet(showSheet: .constant(true), movies: .constant([]), shows: .constant([]))
+            //.preferredColorScheme(.dark)
+    }
+}

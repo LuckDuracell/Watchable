@@ -32,6 +32,7 @@ struct Show: Hashable, Codable, LocalFileStorable {
     var info: String
     var platform: String
     var reoccuring: Bool
+    
 }
 
 protocol LocalFilesStorable: Codable {
