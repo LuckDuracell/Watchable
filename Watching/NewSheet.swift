@@ -12,6 +12,7 @@ struct NewSheet: View {
     @Binding var showSheet: Bool
     @Binding var movies: [Movie]
     @Binding var shows: [Show]
+
     
     @State private var selectedDate: Date = Date()
     @State private var showDate: Bool = false
@@ -31,6 +32,8 @@ struct NewSheet: View {
     
     @State var active = false
     @State var reoccuring = false
+    
+    
     
     var body: some View {
         NavigationView {
@@ -115,8 +118,6 @@ struct NewSheet: View {
                         .padding()
                         .padding(.bottom, 30)
                 }
-                
-                
             }
             .edgesIgnoringSafeArea(.all)
             .navigationBarTitle("Add Item", displayMode: .automatic)
@@ -151,6 +152,28 @@ func getImageForType(type: String) -> String {
         return "dice.fill"
     } else {
         return "tv"
+    }
+}
+
+func getTypeForImage(image: String) -> String {
+    if image == "hourglass" {
+        return "Action"
+    } else if image == "checkerboard.shield" {
+        return "Medieval"
+    } else if image == "waveform" {
+        return "Sci-Fi"
+    } else if image == "theatermasks.fill" {
+        return "Drama"
+    } else if image == "quote.bubble.fill" {
+        return "Comedy"
+    } else if image == "heart.fill" {
+        return "Romance"
+    } else if image == "camera.fill" {
+        return "Documentary"
+    } else if image == "dice.fill" {
+        return "Game Show"
+    } else {
+        return "Default"
     }
 }
 

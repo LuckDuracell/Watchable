@@ -71,25 +71,7 @@ struct ContentView: View {
                                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                     ForEach(upcomingMovies.indices, id: \.self, content: { index in
                                         NavigationLink(destination: {
-                                            Spacer()
-                                            Text("Releasing in \(dayDifference(date1: Date(), date2: upcomingMovies[index].releaseDate)) Days")
-                                            Text(upcomingMovies[index].name)
-                                                .font(.title)
-                                                .bold()
-                                            Spacer()
-                                            Button {
-                                                movies.remove(at: index)
-                                                Movie.saveToFile(movies)
-                                                showPage = false
-                                            } label: {
-                                                Text("Delete")
-                                                    .foregroundColor(.white)
-                                                    .frame(width: 300, height: 50, alignment: .center)
-                                                    .background(.red)
-                                                    .cornerRadius(15)
-                                                    .padding()
-                                            }
-                                            Spacer()
+                                            editPage(showPage: $showPage, movies: $movies, shows: $shows, theTitle: upcomingMovies[index].name, theSelectedDate: upcomingMovies[index].releaseDate, theShowDate: true, theNotes: upcomingMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: upcomingMovies[index].icon), thePlatform: upcomingMovies[index].platform, theActive: upcomingMovies[index].active, theReoccuring: false)
                                         }, label: {
                                             VStack {
                                                 HStack {
@@ -121,25 +103,7 @@ struct ContentView: View {
                                     })
                                     ForEach(upcomingShows.indices, id: \.self, content: { index in
                                         NavigationLink(destination: {
-                                            Spacer()
-                                            Text("Releasing in \(dayDifference(date1: Date(), date2: upcomingShows[index].releaseDate)) Days")
-                                            Text(upcomingShows[index].name)
-                                                .font(.title)
-                                                .bold()
-                                            Spacer()
-                                            Button {
-                                                movies.remove(at: index)
-                                                Movie.saveToFile(movies)
-                                                showPage = false
-                                            } label: {
-                                                Text("Delete")
-                                                    .foregroundColor(.white)
-                                                    .frame(width: 300, height: 50, alignment: .center)
-                                                    .background(.red)
-                                                    .cornerRadius(15)
-                                                    .padding()
-                                            }
-                                            Spacer()
+                                            editPage(showPage: $showPage, movies: $movies, shows: $shows, theTitle: upcomingShows[index].name, theSelectedDate: upcomingShows[index].releaseDate, theShowDate: true, theNotes: upcomingShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: upcomingShows[index].icon), thePlatform: upcomingShows[index].platform, theActive: upcomingShows[index].active, theReoccuring: false)
                                         }, label: {
                                             VStack {
                                                 HStack {
@@ -367,7 +331,7 @@ struct ContentView: View {
                 })
                 .sheet(isPresented: $showNewSheet, onDismiss: {
                     loadItems()},content: {
-                    NewSheet(showSheet: $showNewSheet, movies: $movies, shows: $shows)
+                        NewSheet(showSheet: $showNewSheet, movies: $movies, shows: $shows)
                         .interactiveDismissDisabled(true)
                         .accentColor(.pink)
                         .toggleStyle(SwitchToggleStyle(tint: Color.pink))
@@ -414,19 +378,139 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 
 }
 
-extension Calendar {
-    func numberOfDaysBetween(_ from: Date, and to: Date) -> Int {
-        let fromDate = startOfDay(for: from) // <1>
-        let toDate = startOfDay(for: to) // <2>
-        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate) // <3>
-        
-        return numberOfDays.day!
-    }
-}
-
 
 func dayDifference(date1: Date, date2: Date) -> Int {
     let diffs = Calendar.current.dateComponents([.day], from: date1, to: date2)
     return diffs.day! + 1
 }
 
+struct editPage: View {
+    
+    @Binding var showPage: Bool
+    @Binding var movies: [Movie]
+    @Binding var shows: [Show]
+    @State private var selectedDate: Date = Date()
+    @State private var showDate: Bool = false
+    @State var title = ""
+    @State private var notes = ""
+    @State var iconTheme = "Default"
+    @State var themeTypes = ["Default", "Action", "Medieval", "Sci-Fi", "Drama", "Comedy", "Romance", "Documentary", "Game Show"]
+    @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
+    @State var platformTypesShow = ["Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
+    @State var platform = "Theater"
+    @State var active = false
+    @State var reoccuring = false
+    
+    let theTitle: String
+    let theSelectedDate: Date
+    let theShowDate: Bool
+    let theNotes: String
+    let type: String
+    let theIconTheme: String
+    let thePlatform: String
+    let theActive: Bool
+    let theReoccuring: Bool
+    
+    var body: some View {
+            Form {
+                if selectedDate > Date() {
+                    Text("\(type) releases in \(dayDifference(date1: Date(), date2: selectedDate)) Days")
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.pink)
+                } else {
+                    Text(type)
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.pink)
+                }
+                
+                Section {
+                    TextField("Title", text: $title)
+                    
+                    TextField("Notes", text: $notes)
+                }
+                
+                Section {
+                    Picker("Theme", selection: $iconTheme, content: {
+                        ForEach(themeTypes, id: \.self, content: {
+                            pickerLabel(name: $0, image: getImageForType(type: $0))
+                        })
+                    })
+                    Picker("Platform", selection: $platform, content: {
+                        ForEach(type == "Movie" ? platformTypes : platformTypesShow, id: \.self, content: {
+                            Text($0)
+                        })
+                    })
+                }
+                
+                Section {
+                    if active != true {
+                        Toggle("Upcoming", isOn: $showDate)
+                            
+                        if showDate {
+                            DatePicker("Release Date", selection: $selectedDate, in: Date()...,displayedComponents: .date)
+                                .datePickerStyle(.automatic)
+                                .animation(.default, value: 1)
+                        }
+                    }
+                }
+                
+                Section {
+                    Toggle("Currently Watching", isOn: $active)
+                    if type == "Show" {
+                        Toggle("Reoccuring", isOn: $reoccuring)
+                    }
+                }
+
+            }
+            .padding(.top, -30)
+            .edgesIgnoringSafeArea(.all)
+            .background(Color(.systemGroupedBackground))
+            .onAppear(perform: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                    title = theTitle
+                    notes = theNotes
+                })
+                selectedDate = theSelectedDate
+                showDate = theShowDate
+                iconTheme = theIconTheme
+                platform = thePlatform
+                active = theActive
+                reoccuring = theReoccuring
+            })
+            .overlay(
+                Button {
+//                    if type == "Movie" {
+//                        if title != "" {
+//                            if active {
+//                                selectedDate = Date()
+//                            }
+//                            movies.insert(Movie(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform), at: 0)
+//                            Movie.saveToFile(movies)
+//                        }
+//                    } else {
+//                        if title != "" {
+//                            if active {
+//                                selectedDate = Date()
+//                            }
+//                            shows.insert(Show(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform, reoccuring: reoccuring), at: 0)
+//                            Show.saveToFile(shows)
+//                        }
+//                    }
+                    
+                    showPage.toggle()
+                } label: {
+                    Text("Delete")
+                        .foregroundColor(.white)
+                        .bold()
+                        .frame(width: 300, height: 50, alignment: .center)
+                        .background(Color.red)
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.4), radius: 15)
+                        .padding()
+                        .padding(.bottom, 30)
+                }, alignment: .bottom)
+        
+    }
+}
