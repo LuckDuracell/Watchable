@@ -587,22 +587,25 @@ struct editPage: View {
             active = theActive
             reoccuring = theReoccuring
         })
-        .overlay(
-            Button {
-                showAlert.toggle()
-            } label: {
-                Text("Delete")
-                    .foregroundColor(.white)
-                    .bold()
-                    .frame(width: 300, height: 50, alignment: .center)
-                    .background(Color.red)
-                    .cornerRadius(15)
-                    .shadow(color: .black.opacity(0.4), radius: 15)
-                    .padding()
-                    .padding(.bottom, 30)
-            }, alignment: .bottom)
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Button {
+                    showAlert.toggle()
+                } label: {
+                    Text("Delete")
+                        .foregroundColor(.white)
+                        .bold()
+                        .frame(width: 300, height: 50, alignment: .center)
+                        .background(Color.red)
+                        .cornerRadius(15)
+                        .shadow(color: .black.opacity(0.4), radius: 15)
+                        .padding()
+                        .padding(.bottom, 30)
+                }
+            }
         }
     }
+}
 
 struct editPickerLabel: View {
     
