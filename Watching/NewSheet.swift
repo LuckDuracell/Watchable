@@ -24,7 +24,7 @@ struct NewSheet: View {
     @State var viewingTypes = ["Movie", "Show"]
     
     @State var iconTheme = "Default"
-    @State var themeTypes = ["Default", "Action", "Medieval", "Sci-Fi", "Drama", "Comedy", "Romance", "Documentary", "Game Show"]
+    @State var themeTypes = ["Default", "Action", "Fantasy", "Sci-Fi", "Drama", "Comedy", "Romance", "Horror", "Documentary", "Game Show"]
     
     @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
     @State var platformTypesShow = ["Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
@@ -51,6 +51,9 @@ struct NewSheet: View {
                     
                     Section {
                         TextField("Title", text: $title)
+                            .autocapitalization(.words)
+                            .disableAutocorrection(true)
+                            .keyboardType(.alphabet)
                         
                         TextField("Notes", text: $notes)
                     }
@@ -136,7 +139,7 @@ struct NewSheet_Previews: PreviewProvider {
 func getImageForType(type: String) -> String {
     if type == "Action" {
         return "hourglass"
-    } else if type == "Medieval" {
+    } else if type == "Fantasy" {
         return "checkerboard.shield"
     } else if type == "Sci-Fi" {
         return "waveform"
@@ -146,6 +149,8 @@ func getImageForType(type: String) -> String {
         return "quote.bubble.fill"
     } else if type == "Romance" {
         return "heart.fill"
+    } else if type == "Horror" {
+        return "exclamationmark.triangle.fill"
     } else if type == "Documentary" {
         return "camera.fill"
     } else if type == "Game Show" {
@@ -159,7 +164,7 @@ func getTypeForImage(image: String) -> String {
     if image == "hourglass" {
         return "Action"
     } else if image == "checkerboard.shield" {
-        return "Medieval"
+        return "Fantasy"
     } else if image == "waveform" {
         return "Sci-Fi"
     } else if image == "theatermasks.fill" {
@@ -168,6 +173,8 @@ func getTypeForImage(image: String) -> String {
         return "Comedy"
     } else if image == "heart.fill" {
         return "Romance"
+    } else if image == "exclamationmark.triangle.fill" {
+        return "Horror"
     } else if image == "camera.fill" {
         return "Documentary"
     } else if image == "dice.fill" {

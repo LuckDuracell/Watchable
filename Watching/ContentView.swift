@@ -136,6 +136,12 @@ struct ContentView: View {
                                         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
                                     })
                                 })
+                            }) .padding(.horizontal)
+                            if upcomingMovies.count != 0 && upcomingShows.count != 0 {
+                                Divider()
+                                    .padding(.horizontal)
+                            }
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                 ForEach(upcomingShows.indices, id: \.self, content: { index in
                                     NavigationLink(destination: {
                                         editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: upcomingShows[index].name, theSelectedDate: upcomingShows[index].releaseDate, theShowDate: true, theNotes: upcomingShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: upcomingShows[index].icon), thePlatform: upcomingShows[index].platform, theActive: upcomingShows[index].active, theReoccuring: upcomingShows[index].reoccuring, ogType: 0, typeIndex: index)
@@ -168,8 +174,7 @@ struct ContentView: View {
                                         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
                                     })
                                 })
-  
-                            }) .padding()
+                            }) .padding(.horizontal)
                         }
                         if activeMovies.count != 0 || activeShows.count != 0 {
                             HStack {
@@ -190,6 +195,8 @@ struct ContentView: View {
                                     Text(activeMovies[index].name)
                                         .font(.system(size: 20, weight: .medium, design: .rounded))
                                         .foregroundColor(.primary)
+                                        .frame(height: 20)
+                                        .truncationMode(.tail)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
@@ -211,6 +218,8 @@ struct ContentView: View {
                                     Text(activeShows[index].name)
                                         .font(.system(size: 20, weight: .medium, design: .rounded))
                                         .foregroundColor(.primary)
+                                        .frame(height: 20)
+                                        .truncationMode(.tail)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
@@ -240,6 +249,9 @@ struct ContentView: View {
                                     Text(inactiveMovies[index].name)
                                         .font(.system(size: 20, weight: .medium, design: .rounded))
                                         .foregroundColor(.primary)
+                                        .frame(height: 20)
+                                        .truncationMode(.tail)
+                                        
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
@@ -261,6 +273,8 @@ struct ContentView: View {
                                     Text(inactiveShows[index].name)
                                         .font(.system(size: 20, weight: .medium, design: .rounded))
                                         .foregroundColor(.primary)
+                                        .frame(height: 20)
+                                        .truncationMode(.tail)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
@@ -358,7 +372,7 @@ struct editPage: View {
     @State var title = ""
     @State private var notes = ""
     @State var iconTheme = "Default"
-    @State var themeTypes = ["Default", "Action", "Medieval", "Sci-Fi", "Drama", "Comedy", "Romance", "Documentary", "Game Show"]
+    @State var themeTypes = ["Default", "Action", "Fantasy", "Sci-Fi", "Drama", "Comedy", "Romance", "Horror", "Documentary", "Game Show"]
     @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
     @State var platformTypesShow = ["Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
     @State var platform = "Theater"
@@ -403,6 +417,9 @@ struct editPage: View {
             
             Section {
                 TextField("Title", text: $title)
+                    .autocapitalization(.words)
+                    .disableAutocorrection(true)
+                    .keyboardType(.alphabet)
                 
                 TextField("Notes", text: $notes)
             }
