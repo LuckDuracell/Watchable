@@ -138,7 +138,10 @@ struct ContentView: View {
                                 })
                             }) .padding(.horizontal)
                             if upcomingMovies.count != 0 && upcomingShows.count != 0 {
-                                Divider()
+                                Rectangle()
+                                    .frame(height: 2, alignment: .center)
+                                    .foregroundColor(.gray.opacity(0.3))
+                                    .cornerRadius(10)
                                     .padding(.horizontal)
                             }
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
@@ -207,6 +210,13 @@ struct ContentView: View {
                                 .padding(.horizontal)
                             })
                         })
+                        if activeMovies.count != 0 && activeShows.count != 0 {
+                            Rectangle()
+                                .frame(height: 2, alignment: .center)
+                                .foregroundColor(.gray.opacity(0.3))
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                        }
                         ForEach(activeShows.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
                                 editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: activeShows[index].name, theSelectedDate: activeShows[index].releaseDate, theShowDate: false, theNotes: activeShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: activeShows[index].icon), thePlatform: activeShows[index].platform, theActive: activeShows[index].active, theReoccuring: activeShows[index].reoccuring, ogType: 1, typeIndex: index)
@@ -262,6 +272,13 @@ struct ContentView: View {
                                 .padding(.horizontal)
                             })
                         })
+                        if inactiveMovies.count != 0 && inactiveShows.count != 0 {
+                            Rectangle()
+                                .frame(height: 2, alignment: .center)
+                                .foregroundColor(.gray.opacity(0.3))
+                                .cornerRadius(10)
+                                .padding(.horizontal)
+                        }
                         ForEach(inactiveShows.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
                                 editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: inactiveShows[index].name, theSelectedDate: inactiveShows[index].releaseDate, theShowDate: false, theNotes: inactiveShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: inactiveShows[index].icon), thePlatform: inactiveShows[index].platform, theActive: inactiveShows[index].active, theReoccuring: inactiveShows[index].reoccuring, ogType: 2, typeIndex: index)
