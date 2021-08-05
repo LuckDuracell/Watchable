@@ -32,6 +32,7 @@ struct ContentView: View {
     @State var showPage = true
     
     
+    
     @State var selectedItemTheme = "Default"
     @State var selectedItemPlatform = "Youtube TV"
     
@@ -283,9 +284,7 @@ struct ContentView: View {
                 )
                 
             }
-            .onAppear(perform: {
-                loadItems()
-            })
+            .onAppear(perform: { loadItems() })
             .sheet(isPresented: $showNewSheet, onDismiss: {
                 loadItems()
             },content: {
@@ -295,7 +294,6 @@ struct ContentView: View {
                     .toggleStyle(SwitchToggleStyle(tint: Color.pink))
             })
         } .accentColor(.pink)
-        
     }
 }
 
