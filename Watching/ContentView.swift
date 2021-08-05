@@ -106,7 +106,7 @@ struct ContentView: View {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                 ForEach(upcomingMovies.indices, id: \.self, content: { index in
                                     NavigationLink(destination: {
-                                        editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: upcomingMovies[index].name, theSelectedDate: upcomingMovies[index].releaseDate, theShowDate: true, theNotes: upcomingMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: upcomingMovies[index].icon), thePlatform: upcomingMovies[index].platform, theActive: upcomingMovies[index].active, theReoccuring: false, ogType: 0, typeIndex: index)
+                                        editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: upcomingMovies[index].name, theSelectedDate: upcomingMovies[index].releaseDate, theShowDate: true, theNotes: upcomingMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: upcomingMovies[index].icon), thePlatform: upcomingMovies[index].platform, theActive: upcomingMovies[index].active, theReoccuring: false, ogType: 0, typeIndex: index)
                                     }, label: {
                                         VStack {
                                             HStack {
@@ -138,7 +138,7 @@ struct ContentView: View {
                                 })
                                 ForEach(upcomingShows.indices, id: \.self, content: { index in
                                     NavigationLink(destination: {
-                                        editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: upcomingShows[index].name, theSelectedDate: upcomingShows[index].releaseDate, theShowDate: true, theNotes: upcomingShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: upcomingShows[index].icon), thePlatform: upcomingShows[index].platform, theActive: upcomingShows[index].active, theReoccuring: upcomingShows[index].reoccuring, ogType: 0, typeIndex: index)
+                                        editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: upcomingShows[index].name, theSelectedDate: upcomingShows[index].releaseDate, theShowDate: true, theNotes: upcomingShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: upcomingShows[index].icon), thePlatform: upcomingShows[index].platform, theActive: upcomingShows[index].active, theReoccuring: upcomingShows[index].reoccuring, ogType: 0, typeIndex: index)
                                     }, label: {
                                         VStack {
                                             HStack {
@@ -181,7 +181,7 @@ struct ContentView: View {
                         }
                         ForEach(activeMovies.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
-                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: activeMovies[index].name, theSelectedDate: activeMovies[index].releaseDate, theShowDate: false, theNotes: activeMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: activeMovies[index].icon), thePlatform: activeMovies[index].platform, theActive: activeMovies[index].active, theReoccuring: false, ogType: 1, typeIndex: index)
+                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: activeMovies[index].name, theSelectedDate: activeMovies[index].releaseDate, theShowDate: false, theNotes: activeMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: activeMovies[index].icon), thePlatform: activeMovies[index].platform, theActive: activeMovies[index].active, theReoccuring: false, ogType: 1, typeIndex: index)
                             }, label: {
                                 HStack {
                                     Image(systemName: activeMovies[index].icon)
@@ -202,7 +202,7 @@ struct ContentView: View {
                         })
                         ForEach(activeShows.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
-                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: activeShows[index].name, theSelectedDate: activeShows[index].releaseDate, theShowDate: false, theNotes: activeShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: activeShows[index].icon), thePlatform: activeShows[index].platform, theActive: activeShows[index].active, theReoccuring: activeShows[index].reoccuring, ogType: 1, typeIndex: index)
+                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: activeShows[index].name, theSelectedDate: activeShows[index].releaseDate, theShowDate: false, theNotes: activeShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: activeShows[index].icon), thePlatform: activeShows[index].platform, theActive: activeShows[index].active, theReoccuring: activeShows[index].reoccuring, ogType: 1, typeIndex: index)
                             }, label: {
                                 HStack {
                                     Image(systemName: activeShows[index].icon)
@@ -231,7 +231,7 @@ struct ContentView: View {
                         }
                         ForEach(inactiveMovies.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
-                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: inactiveMovies[index].name, theSelectedDate: inactiveMovies[index].releaseDate, theShowDate: false, theNotes: inactiveMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: inactiveMovies[index].icon), thePlatform: inactiveMovies[index].platform, theActive: inactiveMovies[index].active, theReoccuring: false, ogType: 2, typeIndex: index)
+                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: inactiveMovies[index].name, theSelectedDate: inactiveMovies[index].releaseDate, theShowDate: false, theNotes: inactiveMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: inactiveMovies[index].icon), thePlatform: inactiveMovies[index].platform, theActive: inactiveMovies[index].active, theReoccuring: false, ogType: 2, typeIndex: index)
                             }, label: {
                                 HStack {
                                     Image(systemName: inactiveMovies[index].icon)
@@ -252,7 +252,7 @@ struct ContentView: View {
                         })
                         ForEach(inactiveShows.indices, id: \.self, content: { index in
                             NavigationLink(destination: {
-                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: $selectedItemTheme, platform: $selectedItemPlatform, theTitle: inactiveShows[index].name, theSelectedDate: inactiveShows[index].releaseDate, theShowDate: false, theNotes: inactiveShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: inactiveShows[index].icon), thePlatform: inactiveShows[index].platform, theActive: inactiveShows[index].active, theReoccuring: inactiveShows[index].reoccuring, ogType: 2, typeIndex: index)
+                                editPage(showPage: $showPage, movies: $movies, shows: $shows, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: inactiveShows[index].name, theSelectedDate: inactiveShows[index].releaseDate, theShowDate: false, theNotes: inactiveShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: inactiveShows[index].icon), thePlatform: inactiveShows[index].platform, theActive: inactiveShows[index].active, theReoccuring: inactiveShows[index].reoccuring, ogType: 2, typeIndex: index)
                             }, label: {
                                 HStack {
                                     Image(systemName: inactiveShows[index].icon)
@@ -351,15 +351,17 @@ struct editPage: View {
     @Binding var inactiveShows: [Show]
     @Binding var inactiveShowsIndexs: [Int]
     
+    @State var showPickers = false
+    
     @State private var selectedDate: Date = Date()
     @State private var showDate: Bool = false
     @State var title = ""
     @State private var notes = ""
-    @Binding var iconTheme: String
+    @State var iconTheme = "Default"
     @State var themeTypes = ["Default", "Action", "Medieval", "Sci-Fi", "Drama", "Comedy", "Romance", "Documentary", "Game Show"]
     @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
     @State var platformTypesShow = ["Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
-    @Binding var platform: String
+    @State var platform = "Theater"
     @State var active = false
     @State var reoccuring = false
     
@@ -373,6 +375,8 @@ struct editPage: View {
     let theActive: Bool
     let theReoccuring: Bool
     
+    @State var loaded = false
+    
     let ogType: Int
     let typeIndex: Int
     
@@ -384,31 +388,30 @@ struct editPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        ZStack {
-            Form {
-                if selectedDate > Date() {
-                    Text("\(type) releases in \(dayDifference(date1: Date(), date2: selectedDate)) Days")
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.pink)
-                } else {
-                    Text(type)
-                        .frame(maxWidth: .infinity)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.pink)
-                }
+        Form {
+            if selectedDate > Date() {
+                Text("\(type) releases in \(dayDifference(date1: Date(), date2: selectedDate)) Days")
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.pink)
+            } else {
+                Text(type)
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.pink)
+            }
+            
+            Section {
+                TextField("Title", text: $title)
                 
-                Section {
-                    TextField("Title", text: $title)
-                    
-                    TextField("Notes", text: $notes)
-                }
-                
+                TextField("Notes", text: $notes)
+            }
+            
+            if showPickers {
                 Section {
                     Picker("Theme", selection: $iconTheme, content: {
                         ForEach(themeTypes, id: \.self, content: {
                             editPickerLabel(name: $0, image: getImageForType(type: $0))
-                                .focused($pickerPage)
                         })
                     })
                     Picker("Platform", selection: $platform, content: {
@@ -417,30 +420,35 @@ struct editPage: View {
                         })
                     })
                 }
-                
-                Section {
-                    if active != true {
-                        Toggle("Upcoming", isOn: $showDate)
-                            
-                        if showDate {
-                            DatePicker("Release Date", selection: $selectedDate, in: Date()...,displayedComponents: .date)
-                                .datePickerStyle(.automatic)
-                                .animation(.default, value: 1)
-                        }
-                    }
-                }
-                
-                Section {
-                    Toggle("Currently Watching", isOn: $active)
-                    if type == "Show" {
-                        Toggle("Reoccuring", isOn: $reoccuring)
-                    }
-                }
-
             }
-            .alert("Delete \(type)?", isPresented: $showAlert, actions: {
-                Button("Cancel", role: .cancel) { }
-                Button("Delete", role: .destructive) {
+            
+            Section {
+                if active != true {
+                    Toggle("Upcoming", isOn: $showDate)
+                        
+                    if showDate {
+                        DatePicker("Release Date", selection: $selectedDate, in: Date()...,displayedComponents: .date)
+                            .datePickerStyle(.automatic)
+                            .animation(.default, value: 1)
+                    }
+                }
+            }
+            
+            Section {
+                Toggle("Currently Watching", isOn: $active)
+                if type == "Show" {
+                    Toggle("Reoccuring", isOn: $reoccuring)
+                }
+            }
+
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Edit Item")
+        .navigationBarItems(trailing:
+            Button {
+                print("disappear")
+                if deleting != true && pickerPage != true {
+                    print(pickerPage)
                     if type == "Movie" {
                         switch ogType {
                             case 0:
@@ -466,46 +474,33 @@ struct editPage: View {
                                 shows.remove(at: inactiveShowsIndexs[typeIndex])
                         }
                     }
-                    Movie.saveToFile(movies)
-                    Show.saveToFile(shows)
-                    deleting = true
+                    if type == "Movie" {
+                        if title != "" {
+                            if active {
+                                selectedDate = Date()
+                            }
+                            movies.insert(Movie(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform), at: 0)
+                            Movie.saveToFile(movies)
+                        }
+                    } else {
+                        if title != "" {
+                            if active {
+                                selectedDate = Date()
+                            }
+                            shows.insert(Show(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform, reoccuring: reoccuring), at: 0)
+                            Show.saveToFile(shows)
+                        }
+                    }
+                    showPage = false
                     self.presentationMode.wrappedValue.dismiss()
-                    //showPage = false
                 }
-            })
-            .padding(.top, -30)
-            .edgesIgnoringSafeArea(.all)
-            .background(Color(.systemGroupedBackground))
-            .onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                    title = theTitle
-                    notes = theNotes
-                })
-                selectedDate = theSelectedDate
-                showDate = theShowDate
-                iconTheme = theIconTheme
-                platform = thePlatform
-                active = theActive
-                reoccuring = theReoccuring
-            })
-            .overlay(
-                Button {
-                    showAlert.toggle()
-                } label: {
-                    Text("Delete")
-                        .foregroundColor(.white)
-                        .bold()
-                        .frame(width: 300, height: 50, alignment: .center)
-                        .background(Color.red)
-                        .cornerRadius(15)
-                        .shadow(color: .black.opacity(0.4), radius: 15)
-                        .padding()
-                        .padding(.bottom, 30)
-                }, alignment: .bottom)
-        } .onDisappear(perform: {
-            print("disappear")
-            if deleting != true && pickerPage != true {
-                print(pickerPage)
+            } label: {
+                Text("Save")
+            }
+        )
+        .alert("Delete \(type)?", isPresented: $showAlert, actions: {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
                 if type == "Movie" {
                     switch ogType {
                         case 0:
@@ -531,29 +526,49 @@ struct editPage: View {
                             shows.remove(at: inactiveShowsIndexs[typeIndex])
                     }
                 }
-                if type == "Movie" {
-                    if title != "" {
-                        if active {
-                            selectedDate = Date()
-                        }
-                        movies.insert(Movie(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform), at: 0)
-                        Movie.saveToFile(movies)
-                    }
-                } else {
-                    if title != "" {
-                        if active {
-                            selectedDate = Date()
-                        }
-                        shows.insert(Show(name: title, icon: getImageForType(type: iconTheme), releaseDate: selectedDate, active: active, info: notes, platform: platform, reoccuring: reoccuring), at: 0)
-                        Show.saveToFile(shows)
-                    }
-                }
-                showPage = false
+                Movie.saveToFile(movies)
+                Show.saveToFile(shows)
+                deleting = true
+                self.presentationMode.wrappedValue.dismiss()
+                //showPage = false
             }
         })
+        .padding(.top, -30)
+        .edgesIgnoringSafeArea(.all)
+        .background(Color(.systemGroupedBackground))
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                title = theTitle
+                notes = theNotes
+            })
+            selectedDate = theSelectedDate
+            showDate = theShowDate
+            if showPickers == false {
+                iconTheme = theIconTheme
+                platform = thePlatform
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                showPickers = true
+            })
+            active = theActive
+            reoccuring = theReoccuring
+        })
+        .overlay(
+            Button {
+                showAlert.toggle()
+            } label: {
+                Text("Delete")
+                    .foregroundColor(.white)
+                    .bold()
+                    .frame(width: 300, height: 50, alignment: .center)
+                    .background(Color.red)
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.4), radius: 15)
+                    .padding()
+                    .padding(.bottom, 30)
+            }, alignment: .bottom)
+        }
     }
-    
-}
 
 struct editPickerLabel: View {
     
