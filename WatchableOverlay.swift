@@ -21,48 +21,30 @@ struct WatchableOverlay: View {
         ZStack {
             Rectangle()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-                .background(.ultraThickMaterial)
+                .background(.black)
                 .edgesIgnoringSafeArea(.all)
-                .opacity(0.85)
+                .opacity(0.35)
                 .onTapGesture(perform: {
                     withAnimation {
                         showTotalOverlay = false
                     }
                 })
             VStack {
-                HStack {
-                    Text("Watchable:")
-                        .bold()
-                        .padding(.vertical, 2)
-                    Spacer()
-                }
-                HStack {
-                    Text("  Movies: \(activeMovies.count + inactiveMovies.count)")
-                    Spacer()
-                }
-                HStack {
-                    Text("  Shows: \(activeShows.count + inactiveShows.count)")
-                    Spacer()
-                }
-                HStack {
-                    Text("Upcoming:")
-                        .bold()
-                        .padding(.vertical, 2)
-                    Spacer()
-                }
-                HStack {
-                    Text("  Movies: \(upcomingMovies.count)")
-                    Spacer()
-                }
-                HStack {
-                    Text("  Shows: \(upcomingShows.count)")
-                    Spacer()
-                }
+                Text("Watchable")
+                    .bold()
+                    .padding(.vertical, 2)
+                Text("Movies: \(activeMovies.count + inactiveMovies.count)")
+                Text("Shows: \(activeShows.count + inactiveShows.count)")
+                Text("Upcoming")
+                    .bold()
+                    .padding(.vertical, 2)
+                Text("Movies: \(upcomingMovies.count)")
+                Text("Shows: \(upcomingShows.count)")
             }
                 .padding()
                 .frame(width: UIScreen.main.bounds.width*0.38, height: UIScreen.main.bounds.height*0.25, alignment: .center)
                 .background(.regularMaterial)
-                .cornerRadius(radius: 8, corners: [.bottomLeft, .bottomRight, .topRight])
+                .cornerRadius(radius: 14, corners: [.bottomLeft, .bottomRight, .topRight])
                 .scaleEffect(showTotalOverlay ? 1 : 0.5)
                 .position(x: showTotalOverlay ? 120 : 40, y: showTotalOverlay ? 170 : 60)
         }
