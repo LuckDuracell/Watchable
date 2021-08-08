@@ -15,6 +15,7 @@
 		0A6128B826B3D43500098972 /* WatchableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128B726B3D43500098972 /* WatchableUITests.swift */; };
 		0A6128C526B3D4E900098972 /* PersistanceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128C426B3D4E900098972 /* PersistanceData.swift */; };
 		0A6128C726B3F4BF00098972 /* NewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6128C626B3F4BF00098972 /* NewSheet.swift */; };
+		0ABBF46826BF7465005B0601 /* WatchableOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABBF46726BF7465005B0601 /* WatchableOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		0A6128B726B3D43500098972 /* WatchableUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchableUITests.swift; sourceTree = "<group>"; };
 		0A6128C426B3D4E900098972 /* PersistanceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersistanceData.swift; path = Watchable/PersistanceData.swift; sourceTree = "<group>"; };
 		0A6128C626B3F4BF00098972 /* NewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewSheet.swift; path = Watchable/NewSheet.swift; sourceTree = "<group>"; };
+		0ABBF46726BF7465005B0601 /* WatchableOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchableOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				0A61289C26B3D43300098972 /* WatchableApp.swift */,
 				0A61289E26B3D43300098972 /* ContentView.swift */,
+				0ABBF46726BF7465005B0601 /* WatchableOverlay.swift */,
 				0A6128C626B3F4BF00098972 /* NewSheet.swift */,
 				0A6128C426B3D4E900098972 /* PersistanceData.swift */,
 				0A6128A026B3D43400098972 /* Assets.xcassets */,
@@ -266,6 +269,7 @@
 				0A6128C726B3F4BF00098972 /* NewSheet.swift in Sources */,
 				0A6128C526B3D4E900098972 /* PersistanceData.swift in Sources */,
 				0A61289F26B3D43300098972 /* ContentView.swift in Sources */,
+				0ABBF46826BF7465005B0601 /* WatchableOverlay.swift in Sources */,
 				0A61289D26B3D43300098972 /* WatchableApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
