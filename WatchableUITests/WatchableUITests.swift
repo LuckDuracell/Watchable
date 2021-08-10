@@ -1,6 +1,6 @@
 //
-//  WatchingUITests.swift
-//  WatchingUITests
+//  WatchableUITests.swift
+//  WatchableUITests
 //
 //  Created by Luke Drushell on 7/29/21.
 //
