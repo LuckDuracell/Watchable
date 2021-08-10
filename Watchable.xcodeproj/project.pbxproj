@@ -101,8 +101,8 @@
 				0A61289C26B3D43300098972 /* WatchableApp.swift */,
 				0A61289E26B3D43300098972 /* ContentView.swift */,
 				0A6128C426B3D4E900098972 /* PersistanceData.swift */,
-				0ABBF46926C25487005B0601 /* additional views */,
 				0A6128A026B3D43400098972 /* Assets.xcassets */,
+				0ABBF46926C25487005B0601 /* additional views */,
 				0A6128A226B3D43400098972 /* Preview Content */,
 			);
 			name = Watchable;
@@ -139,7 +139,8 @@
 				0ABBF46726BF7465005B0601 /* WatchableOverlay.swift */,
 				0A6128C626B3F4BF00098972 /* NewSheet.swift */,
 			);
-			path = "additional views";
+			name = "additional views";
+			path = "Watchable/additional views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
