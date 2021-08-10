@@ -79,8 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				0A61289B26B3D43300098972 /* Watchable */,
-				0A6128AC26B3D43400098972 /* WatchingTests */,
-				0A6128B626B3D43500098972 /* WatchingUITests */,
+				0A6128AC26B3D43400098972 /* WatchableTests */,
+				0A6128B626B3D43500098972 /* WatchableUITests */,
 				0A61289A26B3D43300098972 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,21 +118,19 @@
 			path = "Watchable/Preview Content";
 			sourceTree = "<group>";
 		};
-		0A6128AC26B3D43400098972 /* WatchingTests */ = {
+		0A6128AC26B3D43400098972 /* WatchableTests */ = {
 			isa = PBXGroup;
 			children = (
 				0A6128AD26B3D43400098972 /* WatchableTests.swift */,
 			);
-			name = WatchingTests;
 			path = WatchableTests;
 			sourceTree = "<group>";
 		};
-		0A6128B626B3D43500098972 /* WatchingUITests */ = {
+		0A6128B626B3D43500098972 /* WatchableUITests */ = {
 			isa = PBXGroup;
 			children = (
 				0A6128B726B3D43500098972 /* WatchableUITests.swift */,
 			);
-			name = WatchingUITests;
 			path = WatchableUITests;
 			sourceTree = "<group>";
 		};
