@@ -61,7 +61,7 @@ struct ContentView: View {
         showsV2.removeAll()
         print(showsV2.count)
         print(shows.count)
-        print(movies.count)
+        
         for index in shows.indices {
             showsV2.append(ShowV2(name: shows[index].name, icon: shows[index].icon, releaseDate: shows[index].releaseDate, active: shows[index].active, info: shows[index].info, platform: shows[index].platform, reoccuring: shows[index].reoccuring, reoccuringDate: Date()))
         }
