@@ -44,6 +44,7 @@ struct ContentView: View {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         movies = Movie.loadFromFile()
         shows = Show.loadFromFile()
+        showsV2 = ShowV2.loadFromFile()
         inactiveMovies.removeAll()
         inactiveShows.removeAll()
         inactiveMoviesIndexs.removeAll()
@@ -57,9 +58,14 @@ struct ContentView: View {
         upcomingShows.removeAll()
         upcomingShowsIndexs.removeAll()
         
+        showsV2.removeAll()
+        print(showsV2.count)
+        print(shows.count)
         for index in shows.indices {
             showsV2.append(ShowV2(name: shows[index].name, icon: shows[index].icon, releaseDate: shows[index].releaseDate, active: shows[index].active, info: shows[index].info, platform: shows[index].platform, reoccuring: shows[index].reoccuring, reoccuringDate: Date()))
         }
+        ShowV2.saveToFile(showsV2)
+        print(showsV2.count)
         
         for index in movies.indices {
             if movies[index].active {
@@ -368,7 +374,7 @@ struct ContentView: View {
             .sheet(isPresented: $showNewSheet, onDismiss: {
                 loadItems()
             },content: {
-                    NewSheet(showSheet: $showNewSheet, movies: $movies, shows: $shows)
+                NewSheet(showSheet: $showNewSheet, movies: $movies, shows: $shows, showsV2: $showsV2)
                     .interactiveDismissDisabled(true)
                     .accentColor(.pink)
                     .toggleStyle(SwitchToggleStyle(tint: Color.pink))
