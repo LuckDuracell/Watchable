@@ -65,7 +65,7 @@ struct ContentView: View {
             } else if checkUpcoming(date: movies[index].releaseDate) {
                 upcomingMovies.append(movies[index])
                 upcomingMoviesIndexs.append(index)
-                scheduleNotification(title: "Watching", info: "\(movies[index].name) is out now!", date: movies[index].releaseDate)
+                scheduleNotification(title: "Watchable", info: "\(movies[index].name) comes out today!", date: movies[index].releaseDate)
             } else {
                 inactiveMovies.append(movies[index])
                 inactiveMoviesIndexs.append(index)
@@ -77,12 +77,12 @@ struct ContentView: View {
                 activeShows.append(showsV2[index])
                 activeShowsIndexs.append(index)
                 if showsV2[index].reoccuring {
-                    scheduleNotification(title: "Watching", info: "An episode of \(showsV2[index].name) comes out today!", date: showsV2[index].reoccuringDate)
+                    scheduleNotification(title: "Watchable", info: "An episode of \(showsV2[index].name) comes out today!", date: showsV2[index].reoccuringDate)
                 }
             } else if checkUpcoming(date: showsV2[index].releaseDate) {
                 upcomingShows.append(showsV2[index])
                 upcomingShowsIndexs.append(index)
-                scheduleNotification(title: "Watching", info: "\(showsV2[index].name) starts today!!", date: showsV2[index].releaseDate)
+                scheduleNotification(title: "Watchable", info: "\(showsV2[index].name) releases today!", date: showsV2[index].releaseDate)
             } else {
                 inactiveShows.append(showsV2[index])
                 inactiveShowsIndexs.append(index)
@@ -489,8 +489,8 @@ struct editPage: View {
     
     var body: some View {
         Form {
-            if selectedDate > Date() {
-                Text("\(type) releases in \(dayDifference(date1: Date(), date2: selectedDate)) Days")
+            if checkUpcoming(date: selectedDate) {
+                Text("\(type) releases in \(dayDifference(date1: Date(), date2: selectedDate)) Day\(dayDifference(date1: Date(), date2: selectedDate) == 1 ? "" : "s")")
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.pink)
