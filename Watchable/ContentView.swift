@@ -641,7 +641,8 @@ struct editPage: View {
             }
         })
         .padding(.top, -30)
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.horizontal)
         .background(Color(.systemGroupedBackground))
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
