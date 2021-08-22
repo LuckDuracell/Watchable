@@ -56,6 +56,15 @@ struct ContentView: View {
         upcomingShows.removeAll()
         upcomingShowsIndexs.removeAll()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            let center = UNUserNotificationCenter.current()
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                for request in requests {
+                    print(request)
+                }
+            })
+        })
+        
         
         
         for index in movies.indices {
@@ -77,7 +86,8 @@ struct ContentView: View {
                 activeShows.append(showsV2[index])
                 activeShowsIndexs.append(index)
                 if showsV2[index].reoccuring {
-                    scheduleNotification(title: "Watchable", info: "An episode of \(showsV2[index].name) comes out today!", date: showsV2[index].reoccuringDate)
+                    let day = Calendar.current.dateComponents([.weekday], from: showsV2[index].reoccuringDate)
+                    scheduleWeeklyNotification(title: "Watchable", info: "An episode of \(showsV2[index].name) comes out today!", date: createDate(weekday: day.weekday!))
                 }
             } else if checkUpcoming(date: showsV2[index].releaseDate) {
                 upcomingShows.append(showsV2[index])
@@ -735,7 +745,7 @@ func scheduleNotification(title: String, info: String, date: Date) {
     dateComponents.second = 0
     
     // Create the trigger as a repeating event.
-    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     
     // Create the request
     let uuidString = UUID().uuidString
@@ -758,7 +768,7 @@ func scheduleWeeklyNotification(title: String, info: String, date: Date) {
         content.title = title
         content.body = info
     
-        let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute,.second,], from: date)
+        let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour, .minute, .second,], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: true)
 
         let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
