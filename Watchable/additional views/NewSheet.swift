@@ -39,7 +39,6 @@ struct NewSheet: View {
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
                 Form {
                     Section {
                         Picker("Picker", selection: $typePicker, content: {
@@ -132,7 +131,8 @@ struct NewSheet: View {
                         .padding(.bottom, 30)
                 }
             }
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.horizontal)
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarTitle("Add Item", displayMode: .automatic)
             .background(Color(.systemGroupedBackground))
         }
