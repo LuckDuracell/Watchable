@@ -468,7 +468,7 @@ struct editPage: View {
     @State private var notes = ""
     @State var iconTheme = "Default"
     @State var themeTypes = ["Default", "Action", "Fantasy", "Sci-Fi", "Drama", "Comedy", "Romance", "Horror", "Documentary", "Game Show"]
-    @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Other"]
+    @State var platformTypes = ["Theater", "Netflix", "Hulu", "HBO Max", "Prime Video", "Disney+", "Youtube TV", "Apple TV", "Peacock", "Crunchyroll", "Paid Only", "Unknown"]
     @State var platform = "Theater"
     @State var reoccuringTypes = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     @State var reoccuringDay = "Sunday"
