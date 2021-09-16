@@ -10,6 +10,8 @@ import UserNotifications
 
 struct ContentView: View {
     
+    @State var searchText = ""
+    
     @State var showsV2 = ShowV2.loadFromFile()
     @State var movies = Movie.loadFromFile()
 
@@ -144,6 +146,7 @@ struct ContentView: View {
                                 })
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                 ForEach(upcomingMovies.indices, id: \.self, content: { index in
+                                    if upcomingMovies[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                                     NavigationLink(destination: {
                                         editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: upcomingMovies[index].name, theSelectedDate: upcomingMovies[index].releaseDate, theShowDate: true, theNotes: upcomingMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: upcomingMovies[index].icon), thePlatform: upcomingMovies[index].platform, theReocurringDay: "Sunday", theActive: upcomingMovies[index].active, theReoccuring: false, ogType: 0, typeIndex: index)
                                     }, label: {
@@ -174,9 +177,10 @@ struct ContentView: View {
                                         .padding()
                                         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
                                     })
+                                }
                                 })
                             }) .padding(.horizontal)
-                            if upcomingMovies.count != 0 && upcomingShows.count != 0 {
+                            if upcomingMovies.count != 0 && upcomingShows.count != 0 && searchText == "" {
                                 Rectangle()
                                     .frame(height: 2, alignment: .center)
                                     .foregroundColor(.gray.opacity(0.3))
@@ -185,6 +189,7 @@ struct ContentView: View {
                             }
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                 ForEach(upcomingShows.indices, id: \.self, content: { index in
+                                    if upcomingShows[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                                     NavigationLink(destination: {
                                         editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: upcomingShows[index].name, theSelectedDate: upcomingShows[index].releaseDate, theShowDate: true, theNotes: upcomingShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: upcomingShows[index].icon), thePlatform: upcomingShows[index].platform, theReocurringDay: dateToWeekdayString(day: upcomingShows[index].reoccuringDate), theActive: upcomingShows[index].active, theReoccuring: upcomingShows[index].reoccuring, ogType: 0, typeIndex: index)
                                     }, label: {
@@ -215,10 +220,11 @@ struct ContentView: View {
                                         .padding()
                                         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
                                     })
+                                }
                                 })
                             }) .padding(.horizontal)
                         }
-                        if activeMovies.count != 0 || activeShows.count != 0 {
+                        if (activeMovies.count != 0 || activeShows.count != 0) {
                             HStack {
                                 Text("Watching:")
                                     .foregroundColor(.gray)
@@ -227,6 +233,7 @@ struct ContentView: View {
                             } .padding(.horizontal)
                         }
                         ForEach(activeMovies.indices, id: \.self, content: { index in
+                            if activeMovies[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
                                 editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: activeMovies[index].name, theSelectedDate: activeMovies[index].releaseDate, theShowDate: false, theNotes: activeMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: activeMovies[index].icon), thePlatform: activeMovies[index].platform, theReocurringDay: "Sunday", theActive: activeMovies[index].active, theReoccuring: false, ogType: 1, typeIndex: index)
                             }, label: {
@@ -248,8 +255,9 @@ struct ContentView: View {
                                 .cornerRadius(15)
                                 .padding(.horizontal)
                             })
+                        }
                         })
-                        if activeMovies.count != 0 && activeShows.count != 0 {
+                        if activeMovies.count != 0 && activeShows.count != 0 && searchText == "" {
                             Rectangle()
                                 .frame(height: 2, alignment: .center)
                                 .foregroundColor(.gray.opacity(0.3))
@@ -257,6 +265,7 @@ struct ContentView: View {
                                 .padding(.horizontal)
                         }
                         ForEach(activeShows.indices, id: \.self, content: { index in
+                            if activeShows[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
                                 editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: activeShows[index].name, theSelectedDate: activeShows[index].releaseDate, theShowDate: false, theNotes: activeShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: activeShows[index].icon), thePlatform: activeShows[index].platform, theReocurringDay: dateToWeekdayString(day: activeShows[index].reoccuringDate), theActive: activeShows[index].active, theReoccuring: activeShows[index].reoccuring, ogType: 1, typeIndex: index)
                             }, label: {
@@ -278,6 +287,7 @@ struct ContentView: View {
                                 .cornerRadius(15)
                                 .padding(.horizontal)
                             })
+                        }
                         })
                         if inactiveMovies.count != 0 || inactiveShows.count != 0 {
                             HStack {
@@ -288,6 +298,7 @@ struct ContentView: View {
                             } .padding(.horizontal)
                         }
                         ForEach(inactiveMovies.indices, id: \.self, content: { index in
+                            if inactiveMovies[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
                                 editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: inactiveMovies[index].name, theSelectedDate: inactiveMovies[index].releaseDate, theShowDate: false, theNotes: inactiveMovies[index].info, type: "Movie", theIconTheme: getTypeForImage(image: inactiveMovies[index].icon), thePlatform: inactiveMovies[index].platform, theReocurringDay: "Sunday", theActive: inactiveMovies[index].active, theReoccuring: false, ogType: 2, typeIndex: index)
                             }, label: {
@@ -310,8 +321,9 @@ struct ContentView: View {
                                 .cornerRadius(15)
                                 .padding(.horizontal)
                             })
+                            }
                         })
-                        if inactiveMovies.count != 0 && inactiveShows.count != 0 {
+                        if inactiveMovies.count != 0 && inactiveShows.count != 0 && searchText == "" {
                             Rectangle()
                                 .frame(height: 2, alignment: .center)
                                 .foregroundColor(.gray.opacity(0.3))
@@ -319,6 +331,7 @@ struct ContentView: View {
                                 .padding(.horizontal)
                         }
                         ForEach(inactiveShows.indices, id: \.self, content: { index in
+                            if inactiveShows[index].name.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
                                 editPage(movies: $movies, showsV2: $showsV2, upcomingMovies: $upcomingMovies, upcomingMoviesIndexs: $upcomingMoviesIndexs, upcomingShows: $upcomingShows, upcomingShowsIndexs: $upcomingShowsIndexs, activeMovies: $activeMovies, activeMoviesIndexs: $activeMoviesIndexs, activeShows: $activeShows, activeShowsIndexs: $activeShowsIndexs, inactiveMovies: $inactiveMovies, inactiveMoviesIndexs: $inactiveMoviesIndexs, inactiveShows: $inactiveShows, inactiveShowsIndexs: $inactiveShowsIndexs, iconTheme: selectedItemTheme, theTitle: inactiveShows[index].name, theSelectedDate: inactiveShows[index].releaseDate, theShowDate: false, theNotes: inactiveShows[index].info, type: "Show", theIconTheme: getTypeForImage(image: inactiveShows[index].icon), thePlatform: inactiveShows[index].platform, theReocurringDay: dateToWeekdayString(day: inactiveShows[index].reoccuringDate), theActive: inactiveShows[index].active, theReoccuring: inactiveShows[index].reoccuring, ogType: 2, typeIndex: index)
                             }, label: {
@@ -340,6 +353,7 @@ struct ContentView: View {
                                 .cornerRadius(15)
                                 .padding(.horizontal)
                             })
+                            }
                         })
                     }
                 }
@@ -363,6 +377,7 @@ struct ContentView: View {
                 )
                 
             }
+            .searchable(text: $searchText)
             .onAppear(perform: { loadItems() })
             .sheet(isPresented: $showNewSheet, onDismiss: {
                 loadItems()
