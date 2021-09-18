@@ -127,21 +127,23 @@ struct ContentView: View {
                             .padding()
                     }
                     VStack {
-                        if upcomingMovies.count != 0 || upcomingShows.count != 0 {
-                            HStack {
-                                Text("Upcoming:")
-                                    .foregroundColor(.gray)
-                                    .padding(.top, 25)
-                                    .onTapGesture(count: 3, perform: {
-                                        ytEasterEgg.toggle()
+                        if (upcomingMovies.count != 0 || upcomingShows.count != 0) {
+                            if (arrayContains(movies: upcomingMovies, shows: upcomingShows, text: searchText) || searchText == "") {
+                                HStack {
+                                    Text("Upcoming:")
+                                        .foregroundColor(.gray)
+                                        .padding(.top, 25)
+                                        .onTapGesture(count: 3, perform: {
+                                            ytEasterEgg.toggle()
+                                        })
+                                    Spacer()
+                                } .padding(.horizontal)
+                                    .onAppear(perform: {
+                                        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                                            loadItems()
+                                        })
                                     })
-                                Spacer()
-                            } .padding(.horizontal)
-                                .onAppear(perform: {
-                                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                                        loadItems()
-                                    })
-                                })
+                            }
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
                                 ForEach(upcomingMovies.indices, id: \.self, content: { index in
                                     if upcomingMovies[index].name.lowercased().contains(searchText.lowercased()) || upcomingMovies[index].info.lowercased().contains(searchText.lowercased()) || searchText == "" {
@@ -223,13 +225,14 @@ struct ContentView: View {
                             }) .padding(.horizontal)
                         }
                         if (activeMovies.count != 0 || activeShows.count != 0) {
-                            HStack {
-                                Text("Watching:")
-                                    .foregroundColor(.gray)
-                                    .padding(.top, 25)
-                                Spacer()
-                            } .padding(.horizontal)
-                        }
+                            if (arrayContains(movies: activeMovies, shows: activeShows, text: searchText) || searchText == "") {
+                                HStack {
+                                    Text("Watching:")
+                                        .foregroundColor(.gray)
+                                        .padding(.top, 25)
+                                    Spacer()
+                                } .padding(.horizontal)
+                            }
                         ForEach(activeMovies.indices, id: \.self, content: { index in
                             if activeMovies[index].name.lowercased().contains(searchText.lowercased()) || activeMovies[index].info.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
@@ -287,14 +290,16 @@ struct ContentView: View {
                             })
                         }
                         })
-                        if inactiveMovies.count != 0 || inactiveShows.count != 0 {
-                            HStack {
-                                Text("Need to Watch:")
-                                    .foregroundColor(.gray)
-                                    .padding(.top, 25)
-                                Spacer()
-                            } .padding(.horizontal)
                         }
+                        if inactiveMovies.count != 0 || inactiveShows.count != 0 {
+                            if (arrayContains(movies: inactiveMovies, shows: inactiveShows, text: searchText) || searchText == "") {
+                                HStack {
+                                    Text("Need to Watch:")
+                                        .foregroundColor(.gray)
+                                        .padding(.top, 25)
+                                    Spacer()
+                                } .padding(.horizontal)
+                            }
                         ForEach(inactiveMovies.indices, id: \.self, content: { index in
                             if inactiveMovies[index].name.lowercased().contains(searchText.lowercased()) || inactiveMovies[index].info.lowercased().contains(searchText.lowercased()) || searchText == "" {
                             NavigationLink(destination: {
@@ -353,6 +358,7 @@ struct ContentView: View {
                             })
                             }
                         })
+                    }
                     }
                 }
                // .navigationBarTitle("Watchable", displayMode: showTotalOverlay ? .inline : .automatic)
@@ -820,4 +826,16 @@ extension View {
     func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
+}
+
+func arrayContains(movies: [Movie], shows: [ShowV2], text: String) -> Bool {
+    for movie in movies {
+        if movie.name.lowercased().contains(text.lowercased()) || movie.info.lowercased().contains(text.lowercased()) { return true }
+    }
+    for show in shows {
+        if show.name.lowercased().contains(text.lowercased()) || show.info.lowercased().contains(text.lowercased()) { return true }
+    }
+    
+    return false
+    
 }
