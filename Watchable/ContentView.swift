@@ -407,7 +407,7 @@ struct ContentView: View {
                 }
                 ytEasterEgg = true
                 print("toggling icon")
-            }), secondaryButton: .cancel(Text("go away lmao")))
+            }), secondaryButton: .cancel(Text("Ew gross go away")))
         })
     }
 }
