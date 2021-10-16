@@ -505,6 +505,9 @@ struct editPage: View {
     let theActive: Bool
     let theReoccuring: Bool
     
+    @State var searchLink = "google.com"
+    @State var showWeb = false
+    
     @State var loaded = false
     
     let ogType: Int
@@ -579,7 +582,46 @@ struct editPage: View {
                     }
                 }
             }
-
+            
+            if platform != "Default" && platform != "Theater" && platform != "Unknown" && platform != "Paid Only" {
+            Section {
+                Button {
+                    let titleReformatted = title.replacingOccurrences(of: "?", with: "%3F").replacingOccurrences(of: " ", with: "%20")
+//                    searchLink = "https://reelgood.com/search?q=\(titleReformatted)"
+//                    showWeb = true
+                    
+//                   UIApplication.shared.open(URL(string: "https://tv.apple.com/us/search/id?q=\(titleReformatted)")!)
+                   //UIApplication.shared.open(URL(string: "videos://search?=\(titleReformatted)")!)
+                    
+                    switch platform {
+                    case "Netflix":
+                        UIApplication.shared.open(URL(string: "https://netflix.com/search?q=\(titleReformatted)")!)
+                    case "Hulu":
+                        UIApplication.shared.open(URL(string: "hulu://search?q=\(titleReformatted)")!)
+                    case "HBO Max":
+                        UIApplication.shared.open(URL(string: "https://play.hbomax.com/search/\(titleReformatted)")!)
+                    case "Prime Video":
+                        UIApplication.shared.open(URL(string: "aiv://aiv/search?asin=\(titleReformatted)")!)
+                    case "Disney+":
+                        UIApplication.shared.open(URL(string: "https://disneyplus.com/search/")!)
+                    case "Youtube TV":
+                        UIApplication.shared.open(URL(string: "https://tv.youtube.com/search/\(titleReformatted)")!)
+                    case "Apple TV":
+                        UIApplication.shared.open(URL(string: "videos://search?q=\(titleReformatted)")!)
+                    case "Peacock":
+                        UIApplication.shared.open(URL(string: "peacock://")!)
+                    case "Crunchyroll":
+                        //UIApplication.shared.open(URL(string: "https://www.crunchyroll.com/search?from=&q=\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "crunchyroll://search/search?q=\(titleReformatted)")!)
+                    default:
+                        print("ERROR: NO APPLICATION ASSOSIATED WITH PLATFORM")
+                    }
+                } label: {
+                    Label("Open \(platform)", systemImage: "arrow.up.right.square.fill")
+                }
+            }
+            }
+            
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle("Edit Item")
@@ -691,23 +733,35 @@ struct editPage: View {
             active = theActive
             reoccuring = theReoccuring
         })
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
+        .sheet(isPresented: $showWeb, content: {
+            VStack {
                 Button {
-                    showAlert.toggle()
+                    showWeb = false
                 } label: {
-                    Text("Delete")
-                        .foregroundColor(.white)
-                        .bold()
-                        .frame(width: 300, height: 50, alignment: .center)
-                        .background(Color.red)
-                        .cornerRadius(15)
-                        .shadow(color: .black.opacity(0.4), radius: 15)
+                    Image(systemName: "chevron.down")
+                        .resizable()
+                        .frame(width: 30, height: 15, alignment: .center)
+                        .foregroundColor(.pink)
                         .padding()
-                        .padding(.bottom, 30)
                 }
+                WebView(url: searchLink)
             }
-        }
+        })
+        .overlay(
+            Button {
+                showAlert.toggle()
+            } label: {
+                Text("Delete")
+                    .foregroundColor(.white)
+                    .bold()
+                    .frame(width: 300, height: 50, alignment: .center)
+                    .background(Color.red)
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.4), radius: 15)
+                    //.padding()
+            },
+            alignment: .bottom
+        )
     }
 }
 
