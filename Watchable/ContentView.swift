@@ -457,7 +457,7 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 
 func dayDifference(date1: Date, date2: Date) -> Int {
     let diffs = Calendar.current.dateComponents([.day], from: date1, to: date2)
-    return diffs.day! + 1
+    return diffs.day!
 }
 
 struct editPage: View {
@@ -504,11 +504,6 @@ struct editPage: View {
     let theReocurringDay: String
     let theActive: Bool
     let theReoccuring: Bool
-    
-    @State var searchLink = "google.com"
-    @State var showWeb = false
-    
-    @State var loaded = false
     
     let ogType: Int
     let typeIndex: Int
@@ -597,24 +592,35 @@ struct editPage: View {
                     case "Netflix":
                         UIApplication.shared.open(URL(string: "https://netflix.com/search?q=\(titleReformatted)")!)
                     case "Hulu":
-                        UIApplication.shared.open(URL(string: "hulu://search?q=\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "hulu://search")!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            UIApplication.shared.open(URL(string: "https://hulu.com")!)
+                        })
                     case "HBO Max":
-                        UIApplication.shared.open(URL(string: "https://play.hbomax.com/search/\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "https://play.hbomax.com/search/")!)
                     case "Prime Video":
-                        UIApplication.shared.open(URL(string: "aiv://aiv/search?asin=\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "aiv://aiv/search")!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            UIApplication.shared.open(URL(string: "https://primevideo.com")!)
+                        })
                     case "Disney+":
                         UIApplication.shared.open(URL(string: "https://disneyplus.com/search/")!)
                     case "Youtube TV":
                         UIApplication.shared.open(URL(string: "https://tv.youtube.com/search/\(titleReformatted)")!)
                     case "Apple TV":
-                        UIApplication.shared.open(URL(string: "videos://search?q=\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "videos://search")!)
                     case "Peacock":
                         UIApplication.shared.open(URL(string: "peacock://")!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            UIApplication.shared.open(URL(string: "https://peacocktv.com")!)
+                        })
                     case "Crunchyroll":
-                        //UIApplication.shared.open(URL(string: "https://www.crunchyroll.com/search?from=&q=\(titleReformatted)")!)
-                        UIApplication.shared.open(URL(string: "crunchyroll://search/search?q=\(titleReformatted)")!)
+                        UIApplication.shared.open(URL(string: "crunchyroll://")!)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            UIApplication.shared.open(URL(string: "https://crunchyroll.com")!)
+                        })
                     default:
-                        print("ERROR: NO APPLICATION ASSOSIATED WITH PLATFORM")
+                        print("ERROR: NO APPLICATION ASSOSIATED WITH PLATFORM, THIS BUTTON SHOULD NOT HAVE BEEN VISIBLE")
                     }
                 } label: {
                     Label("Open \(platform)", systemImage: "arrow.up.right.square.fill")
@@ -732,20 +738,6 @@ struct editPage: View {
             })
             active = theActive
             reoccuring = theReoccuring
-        })
-        .sheet(isPresented: $showWeb, content: {
-            VStack {
-                Button {
-                    showWeb = false
-                } label: {
-                    Image(systemName: "chevron.down")
-                        .resizable()
-                        .frame(width: 30, height: 15, alignment: .center)
-                        .foregroundColor(.pink)
-                        .padding()
-                }
-                WebView(url: searchLink)
-            }
         })
         .overlay(
             Button {

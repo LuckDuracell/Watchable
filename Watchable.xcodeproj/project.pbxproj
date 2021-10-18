@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A55091426F7FC3E00A78453 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55091326F7FC3E00A78453 /* WebView.swift */; };
 		0A61289D26B3D43300098972 /* WatchableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A61289C26B3D43300098972 /* WatchableApp.swift */; };
 		0A61289F26B3D43300098972 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A61289E26B3D43300098972 /* ContentView.swift */; };
 		0A6128A126B3D43400098972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6128A026B3D43400098972 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A55091326F7FC3E00A78453 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		0A61289926B3D43300098972 /* Watchable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watchable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A61289C26B3D43300098972 /* WatchableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WatchableApp.swift; path = Watchable/WatchableApp.swift; sourceTree = "<group>"; };
 		0A61289E26B3D43300098972 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = Watchable/ContentView.swift; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 			children = (
 				0A61289C26B3D43300098972 /* WatchableApp.swift */,
 				0A61289E26B3D43300098972 /* ContentView.swift */,
-				0A55091326F7FC3E00A78453 /* WebView.swift */,
 				0A6128C426B3D4E900098972 /* PersistanceData.swift */,
 				0A6128A026B3D43400098972 /* Assets.xcassets */,
 				0ABBF46926C25487005B0601 /* additional views */,
@@ -279,7 +276,6 @@
 				0A6128C526B3D4E900098972 /* PersistanceData.swift in Sources */,
 				0A61289F26B3D43300098972 /* ContentView.swift in Sources */,
 				0ABBF46826BF7465005B0601 /* WatchableOverlay.swift in Sources */,
-				0A55091426F7FC3E00A78453 /* WebView.swift in Sources */,
 				0ABAFD0726ED607A00563D89 /* NewSheet.swift in Sources */,
 				0A61289D26B3D43300098972 /* WatchableApp.swift in Sources */,
 			);
@@ -440,7 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 650;
+				CURRENT_PROJECT_VERSION = 699;
 				DEVELOPMENT_ASSET_PATHS = "\"Watchable/Preview Content\"";
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
@@ -448,6 +444,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -455,7 +452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckdev.Watchable;
 				PRODUCT_NAME = Watchable;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -471,7 +468,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 650;
+				CURRENT_PROJECT_VERSION = 699;
 				DEVELOPMENT_ASSET_PATHS = "\"Watchable/Preview Content\"";
 				DEVELOPMENT_TEAM = RV78ENMXZ2;
 				ENABLE_PREVIEWS = YES;
@@ -479,6 +476,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -486,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luckdev.Watchable;
 				PRODUCT_NAME = Watchable;
 				SWIFT_EMIT_LOC_STRINGS = YES;
